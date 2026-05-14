@@ -1,4 +1,6 @@
 const redux = require("redux")
+const reduxLogger = require("redux-logger")
+const logger = reduxLogger.createLogger()
 
 // State ---------------
 const initialStateTitle = ""
@@ -51,11 +53,11 @@ const rootReducer = redux.combineReducers({
 })
 
 // Store ---------------
-const store = redux.createStore(rootReducer)
+const store = redux.createStore(rootReducer, redux.applyMiddleware(logger))
 
 console.log("Inital state", store.getState())
 
-const unsubscribe = store.subscribe(() => console.log("Updated State", store.getState())) // Vai observar cada mudança feita
+const unsubscribe = store.subscribe(() => {}) // Vai observar cada mudança feita
 
 store.dispatch(addTitle("Lista de tarefas do dia 25/05"))
 store.dispatch(addTask("Comprar as coisas do almoço!"))
