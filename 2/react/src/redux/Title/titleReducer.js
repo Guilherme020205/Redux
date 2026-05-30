@@ -1,9 +1,24 @@
-// Cria os criadores de ações (Action Creators) do "Title" (Note que o arquivo se chama "Reducer", mas contém as Actions).
-// Importa a constante de tipo de ação ADD_TITLE para garantir que o nome da ação esteja exato.
-import { ADD_TITLE } from "./titleTypes";
+// Gerencia o estado (dados) relacionado ao "Title".
+// Importa a constante de tipo de ação ADD_TITLE.
+import { ADD_TITLE } from "./titleTypes"
 
-// Cria e exporta a função addTitle, que vai receber o novo título por parâmetro (quando o usuário digitar, por exemplo).
-export function addTitle( title ) {
-    // Retorna um objeto "ação", contendo a etiqueta da ação (type) e a informação de fato (payload).
-    return { type: ADD_TITLE, payload: title }
+// Define o estado inicial do título como uma string vazia (nenhum título por padrão).
+const initialStateTitle = ""
+
+// Cria a função do reducer, que recebe o estado atual (ou o inicial) e a ação despachada.
+function titleReducer(state = initialStateTitle, action) {
+    // Verifica qual o tipo da ação (action.type) que o Redux despachou.
+    switch (action.type) {
+        // Se a ação for do tipo ADD_TITLE...
+        case ADD_TITLE:
+            // ...retorna o novo título, que está guardado no "payload" (carga útil) da ação.
+            return action.payload
+        // Caso a ação não seja reconhecida por este reducer...
+        default:
+            // ...retorna o estado exatamente como ele já estava, sem fazer alterações.
+            return state
+    }
 }
+
+// Exporta este reducer para que ele possa ser conectado ao Root Reducer.
+export default titleReducer;

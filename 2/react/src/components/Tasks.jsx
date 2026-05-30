@@ -2,14 +2,19 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addTitle } from "../redux/Title/titleActions"
-Teste Bobo
+
 export default function Tasks() {
     const [titleInput, setTitleInput] = useState("");
     const [taskInput, setTaskInput] = useState("");
+
     const dispatch = useDispatch();
 
+    const title = useSelector((state) => state.title);
+
+
     const onPressAddTitle = () => {
-        dispatch(addTitle);
+        dispatch(addTitle(titleInput));
+        setTitleInput("");
     }
 
     const onPressAddTask = () => {
@@ -29,7 +34,7 @@ export default function Tasks() {
             />
             <button onClick={onPressAddTitle}>+</button>
         
-            <br/>
+            <br/><br/>
 
             <input 
                 placeholder="Adicione uma tarefa"
@@ -40,7 +45,7 @@ export default function Tasks() {
 
             <br/>
 
-            <h1>Titulo da minha lista</h1>
+            <h1>{title}</h1>
 
             <ul>
                 <li>Item 1 <button>Feito</button></li>
