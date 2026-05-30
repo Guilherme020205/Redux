@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addTitle } from "../redux/Title/titleActions"
-
+Teste Bobo
 export default function Tasks() {
     const [titleInput, setTitleInput] = useState("");
     const [taskInput, setTaskInput] = useState("");
